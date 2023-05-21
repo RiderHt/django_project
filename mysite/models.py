@@ -36,11 +36,11 @@ class Categories(models.Model):
         return self.name
 
 class News(models.Model):
-    title = models.CharField(max_length=100, verbose_name='Заголовок статьи')
-    text = models.TextField(verbose_name='Текст статьи')
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE, default=1)
-    users = models.ForeignKey(Users, on_delete=models.CASCADE, default=1)
-    image = models.ImageField(upload_to='images/news', verbose_name='Картинка', default='1.jpg')
+    title = models.CharField(max_length=100, verbose_name='Заголовок статьи', default='Заголовок')
+    text = models.TextField(verbose_name='Текст статьи', default='Текст статьи')
+    cat_res = models.ForeignKey(Categories, on_delete=models.CASCADE, default=2)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, default=3)
+    image = models.ImageField(upload_to="images/news", verbose_name='Картинка', default='1.jpg')
 
     def __str__(self):
         return self.title

@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from mysite.views import index, about, profile, panel, reg, auth, logout, addnew
+from mysite.views import index, about, profile, panel, reg, auth, logout, addnew, viewarticle
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +28,8 @@ urlpatterns = [
     path('reg/', reg, name='reg'),
     path('auth/', auth, name='auth'),
     path('logout/', logout, name='logout'),
-    path('addnew/', addnew, name='addnew')
+    path('addnew/', addnew, name='addnew'),
+    path('viewarticle/<int:pk>', viewarticle , name='viewarticle')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

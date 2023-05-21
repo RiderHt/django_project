@@ -3,27 +3,26 @@
 {% block content%}
 <form method="post", enctype="multipart/form-data">
     {% csrf_token %}
-    <table>
+  <table>
     <tr>
-       <td>Title:</td> <td>{{ form.title }}</td>
+      <td>Title:</td><td> {{ form.title }} </td>
     </tr>
     <tr>
-        <td>Text:</td> <td> {{ form.text }}</td>
+      <td>Text:</td><td> {{ form.text }} </td>
     </tr>
     <tr>
-        <td>Categories:</td> <td> {{ form.cat_res }}</td>
+      <td>categories:</td><td> {{ form.cat_res }}</td>
     </tr>
     <tr>
-        <td>User:</td> <td> <input type="email" readonly value="{{user}}" name="user"></td>
+      <td></td><td> <input type="hidden"  value="{{id}}" name="user"/> </td>
     </tr>
     <tr>
-        <td>Image:</td> <td>{{ form.image }}</td>
+      <td>image:</td><td> <input type="file" name="img"></td>
     </tr>
     <tr>
-        <td><input type="submit" value="Добавить новость"></td>
+      <td colspan="2"> <input type="submit" value="Добавить новость"></td>
     </tr>
-</table>
+  </table>
 </form>
-
 
 {% endblock %}

@@ -19,11 +19,11 @@ class Auth(forms.Form):
 
 class Addnew(forms.Form):
     title = forms.CharField(min_length=5, widget=forms.TextInput(attrs={'name': 'title'}))
-    text = forms.CharField(min_length=5, widget=forms.Textarea(attrs={'name': 'txt'}))
+    text = forms.CharField(min_length=5, widget=forms.Textarea(attrs={'name': 'text'}))
     categories = Categories.objects.all()
     cat = []
     for categori in categories:
         cat.append((categori.name, categori.name))
-    cat_res = forms.ChoiceField(choices=cat, widget=forms.RadioSelect(attrs={'name': 'categori'}))
-    image = forms.ImageField(widget=forms.FileInput())
+    cat_res = forms.ChoiceField(choices=cat, widget=forms.RadioSelect(attrs={'name': 'cat_res'}))
+    #image = forms.ImageField(widget=forms.FileInput(attrs={'name': 'image'}))
     

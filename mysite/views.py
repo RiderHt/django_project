@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Work, Users, News
+from .models import Work, Users, News, Categories
 from mysite.forms import Registration, Auth, Addnew
 
 def index(request):
@@ -80,14 +80,32 @@ def addnew(request):
         context['user'] = request.session['email']
         if request.method == 'POST':
             print(request.POST)
+            print(request.POST)
+
             form = Addnew(request.POST)
             if form.is_valid():
-                print(1)
+             
+                print(request.FILES)
+                addnew = News()
+                addnew.title = request.POST['title']
+                addnew.text = request.POST['text']
+                addnew.category = Categories.objects.filter(id=request.POST['cat_res']).first
+                addnew.user = Users.objects.filter(id=request.POST['user']).first()
+                addnew.image = request.FILES['img']
+                addnew.save()
         else:
+
             form = Addnew
-            context['form'] = form
+        login = Users.objects.filter(email=request.session['email']).first()
+        context['login'] = login
+        context['form'] = form
         return render(request, 'addnew.html', context=context)
     else:
         return redirect('/')
+
+def viewarticle(request, pk):
+    context = {}
+    context["new"] = New.objects.filter(id=pk).first()
+    return render(request, 'articledetail.html', context=context)
 
 
